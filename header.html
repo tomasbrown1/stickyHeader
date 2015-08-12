@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<style>
+			header {
+				height: 350px;
+				width: 100%;
+				background-color: red;
+			}
+
+			#sticky-header {
+				height: 150px;
+				background-color: green;
+				top: 0;
+			}
+
+			#white-space {
+				height: 2000px;
+			}
+		</style>
+	</head>
+	<body>
+		<header></header>
+		<div id="sticky-header"></div>
+		<div id="white-space"></div>
+		<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+		<script>
+
+			$(window).scroll(function() {
+
+				var $wScroll = $(this).scrollTop();
+
+				var $stickyHeader = $('#sticky-header');
+				var $headerPos = $stickyHeader.offset().top;
+
+				var $header = $('header');
+				var $headerTop = $header.offset().top + $header.height();
+
+				var $headerWidth = $header.width();
+
+				$stickyHeader.css({ 'width' : $headerWidth + 'px' });
+
+					if ($wScroll > $headerPos) {
+						$stickyHeader.css({ 'position' : 'fixed' });
+					} else if ($wScroll < $headerTop) {
+						$stickyHeader.css({ 'position' : 'static' });
+					}
+			});
+		
+		</script>
+	</body>
+</html>
